@@ -1,0 +1,508 @@
+\documentclass[a4paper,twoside,12pt,spanish]{book} 
+%\documentclass[a4paper,10pt]{scrartcl}
+
+% Incluir los paquetes necesarios
+%\usepackage[spanish,activeacute]{babel}
+%\usepackage[latin1]{inputenc} % Caracteres con acentos. 
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{latexsym} % Símbolos 
+\usepackage{graphicx} % Inclusión de gráficos.
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{color}
+\usepackage{url}
+%\usepackage[colorlinks=false]{hyperref}
+% \usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{enumitem}
+% \usepackage{longtable}
+% \usepackage{colortbl}
+% \usepackage{rotating}
+
+
+\sloppy % suaviza las reglas de ruptura de líneas de LaTeX
+\frenchspacing % usar espaciado normal después de '.'
+\geometry{tmargin=3.5cm, bmargin=3.5cm, rmargin=3.5cm, lmargin=3.5cm}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\rightmark}
+\fancyhead[RE]{\leftmark}
+\fancyhead[RO,LE]{\sf \thepage}
+\fancyfoot[RO,LE]{\textcolor[gray]{0.5}{\it Escuela Politécnica Superior de Córdoba}}
+\renewcommand{\headrulewidth}{0.4pt}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+%LINEAS VIUDAS Y HUERFANAS
+\clubpenalty=10000
+\widowpenalty=10000
+
+\begin{document} % Inicio del documento 
+
+\begin{titlepage}
+\begin{center}
+{\Large{\sc Universidad de Córdoba\\
+Escuela Politécnica Superior de Córdoba}}\\ 
+\bc
+  \includegraphics[width=2cm]{imagenes/logo_proyecto_uco.jpg} 
+\ec
+{\Large Ampliación de Ingeniería del Software}\\
+\vspace{1cm}
+{\large Ingeniería Informática}\\
+
+\vspace{2cm}
+{\Large \textbf{Proyecto AGATHA}}\\
+
+\vspace{2cm}
+{\Large {\bf Tutorial - Uso de básico de Git}}\\
+
+\vspace{2cm} \normalsize
+{\bf Juan Jesús Fernández Madrid \\ i52femaj@uco.es}\\
+
+\vspace{2cm}
+ En Córdoba a \today
+\end{center}
+
+\end{titlepage}
+
+
+\newpage
+\thispagestyle{empty}
+
+
+
+
+
+\renewcommand{\contentsname}{\sf Índice} 
+\renewcommand{\partname}{\sf Parte}
+\renewcommand{\chaptername}{\sf Capítulo} 
+\renewcommand{\chaptermark}[1]{\markboth{\sf{Capítulo \thechapter \ #1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\sf\thesection. #1}{}}
+\renewcommand{\thesection}{\sf\thechapter.\arabic{section}}
+\renewcommand{\thechapter}{\sf\arabic{chapter}}
+\renewcommand{\appendixname}{\sf Apéndice} 
+\renewcommand{\bibname}{\sf Bibliografía} 
+\renewcommand{\figurename}{\sf Figura} 
+\renewcommand{\listfigurename}{\sf Indice de figuras} 
+\renewcommand{\tablename}{\sf Tabla} 
+\renewcommand{\listtablename}{\sf Indice de tablas} 
+
+
+%\frontmatter % Incluye: título, prólogo, índices
+
+%\maketitle % Título 
+
+% inserta todos los epígrafes hasta el nivel \paragraph en la tabla de contenidos
+\setcounter{tocdepth}{4} 
+% numera todos los epígrafes hasta nivel \subparagraph en el cuerpo del documento
+\setcounter{secnumdepth}{5} 
+
+\tableofcontents % Tabla de contenido 
+\newpage 
+ \thispagestyle{empty}
+
+%\listoffigures % Índice de figuras 
+%\newpage 
+%\thispagestyle{empty}
+
+%\listoftables % Índice de tablas 
+%\newpage 
+%\thispagestyle{empty}
+
+
+\par En el presente documento se presenta un tutorial básico del uso del Sistema de Control de Versiones GIT, enfocándolo en el desarrollo del proyecto AGATHA.\\
+
+\par El tutorial esta desarrollado sobre el sistema operativo Windows, puesto  que es el que mas dificultad posee en la instalación y configuración de GIT. En sistemas operativos Linux y MAC OS X, al poseer una consola tipo UNIX, el  uso es similar.\\
+
+\par Por lo tanto, el primer paso de este tutorial es la instalación y configuración de GIT en Windows. Previo a este tutorial, se recomienda el \textbf{estudio de la documentación de GIT } \url{http://git-scm.com/}\\
+
+
+
+\section{\textbf{Instalación y configuración de GIT en Windows}}
+
+\par Como acabo de indicar, Windows no posee un sistema de consola tipo UNIX. El primer paso es instalar un sistema con el que se pueda usar GIT en Windows a través de un terminal. Los pasos a seguir son los siguientes:\\
+
+\begin{enumerate}
+ \item Descargar el siguiente programa: \url{http://code.google.com/p/gitextensions/}
+
+ \item Procedemos a su instalación. Es una instalación típica, las etapas que pueden generar dudas se muestran en las siguientes imágenes: 
+
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=9cm]{imagenes/git1.png}
+    \caption{Marcamos las dos opciones}
+  \end{center}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=9cm]{imagenes/git2.png} 
+    \caption{Seleccionamos PuTTy}
+  \end{center}
+\end{figure}
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=10cm]{imagenes/git3.png} 
+    \caption{Deben marcarse Guit Bash Here y Git GUI Here}
+  \end{center}
+\end{figure}
+
+
+\newpage
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=10cm]{imagenes/git4.png} 
+    \caption{Seleccionamos la primera opción}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=10cm]{imagenes/git5.png} 
+    \caption{Seleccionamos la primera opción}
+  \end{center}
+\end{figure}
+
+\newpage
+
+
+ \item El siguiente paso es crear una carpeta en el ordenador, la cual será la \textbf{central} del desarrollo y del repositorio. En mi caso, por ejemplo la he creado en \textit{Mis Documentos}.
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git6.png} 
+    \caption{Creamos una carpeta}
+  \end{center}
+\end{figure}
+
+
+\item Abrimos uno de los programas instalados: \textbf{Git Bash}, y nos dirigimos hacia la carpeta recién creada. Para inicializar el repositorio GIT en dicha carpeta, ejecutamos el comando \textbf{\textit{git init}}.
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git7.png} 
+    \caption{Inicializamos el repositorio}
+  \end{center}
+\end{figure}
+
+
+\newpage
+
+\item A continuación se debe generar las claves SSH para poder acceder al repositorio remoto. Si introducimos nombre de archivo a generar, se crearan los archivos correspondientes en la carpeta \textbf{.ssh} dentro de la carpeta de usuario. Existe la posibilidad e introducir una contraseña para la clave, si se introduce, cada vez que se realice una operación sobre el servidor remoto, será necesario introducirla.
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git8.png} 
+    \caption{Generamos las claves ssh.}
+  \end{center}
+\end{figure}
+
+
+
+
+\item Abrimos el archivo generado \textbf{.pub}, y copiamos su contenido.
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git9.png} 
+    \caption{Copiamos la clave generada}
+  \end{center}
+\end{figure}
+
+
+\newpage
+
+\item Introducimos la clave en \textbf{bitbucket}.
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git10.png} 
+    \caption{SSH Keys en bitbucket}
+  \end{center}
+\end{figure}
+
+\par \textbf{ASSEMBLA}: Para agregar la clave a Assembla, es tan sencillo como acceder a nuestro perfil (dentro de Assembla, esquina superior derecha) y acceder al menu ``Administrar claves SSH". Copiamos la clave anterior en el recuadro y ya se tiene acceso para modificar el repositorio.\\
+
+
+
+
+\item El siguiente paso es enlazar el repositorio local con el repositorio remoto.
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git11.png} 
+    \caption{Repositorio remoto}
+  \end{center}
+\end{figure}
+
+
+\newpage
+
+\item Por último, nos ``\textbf{descargamos}'' el repositorio (\url{http://gitref.org/remotes/#fetch}). Se deberá introducir la contraseña.
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git12.png} 
+    \caption{Obtenemos el repositorio remoto}
+  \end{center}
+\end{figure}
+
+\end{enumerate}
+
+
+
+\newpage
+
+\section{\textbf{Uso de GIT}}
+
+\par A continuación se presentan una serie de comandos para utilizar GIT.
+
+
+\begin{enumerate}
+ \item Podemos obtener las ramas y estado del repositorio remoto.
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git13.png} 
+    \caption{Estado del repositorio}
+  \end{center}
+\end{figure}
+
+
+\item Para crear una nueva rama: \textit{git branch RAMA}. Ejemplo: \textbf{git branch android}\\
+
+
+\item Para movernos a la rama de desarrollo \textit{android}, ejecutamos el siguiente comando.
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git14.png} 
+    \caption{Moverse entre ramas}
+  \end{center}
+\end{figure}
+
+
+\newpage
+
+\item Obtenemos el contenido de la rama. Este comando es necesario ejecutarlo cada vez que se vaya a desarrollar sobre una rama para obtener los cambios que se hayan producido por el resto de compañeros.
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git15.png} 
+    \caption{Actualizar el repositorio local respecto al remoto}
+  \end{center}
+\end{figure}
+
+
+
+\item En la siguiente imagen se observa el código obtenido del servidor. Simplemente habría que abrir el proyecto desde Eclipse para realizar cambios
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git16.png} 
+    \caption{Código fuente}
+  \end{center}
+\end{figure}
+
+
+\item El siguiente paso será realizar cambios en el código fuente del proyecto.
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git17.png} 
+    \caption{Cambios en el código fuente}
+  \end{center}
+\end{figure}
+
+\newpage
+
+\item Para conocer el estado del repositorio, ejecutamos el comando \textit{git status}
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git18.png} 
+    \caption{Estado del repositorio}
+  \end{center}
+\end{figure}
+
+
+\item El siguiente paso es agregar los cambios al área de almacenamiento (\url{http://gitref.org/basic/#add}). Para agregar todos los cambios producidos: \textbf{git add .}
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git19.png} 
+    \caption{Añadir archivos al área de almacenamiento}
+  \end{center}
+\end{figure}
+
+
+\item El penúltimo paso es agregar todos los cambios almacenados al repositorio realizando un commit: \textbf{git commit -m ``Mensaje descriptivo del commit''}
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git20.png} 
+    \caption{Commit}
+  \end{center}
+\end{figure}
+
+\newpage
+
+\item Por último, una vez se ha desarrollado el codigo, y se han realizado las operaciones oportunas en el repositorio local, se deben subir los cambios al repositorio remoto, para ello: \textit{git push origin RAMA}, como estamos en la rama \textbf{android}: \textbf{git push origin android}
+
+\begin{figure}[!ht] %[h] para here [b] para bottom [t] para top
+  \begin{center} 
+    \includegraphics[width=12cm]{imagenes/git21.png} 
+    \caption{Se suben los cambios al servidor}
+  \end{center}
+\end{figure}
+
+\end{enumerate}
+
+
+\par Realizando una síntesis del tutorial, una vez se ha configurado GIT y el repositorio, los pasos a realizar son siempre los mismos:
+
+\begin{itemize}
+  \item Obtener los cambios del servidor. \textbf{git pull origien RAMA}
+  \item Implementar nuevos cambios en el código. 
+  \item Almacenar los cambios. \textbf{git add .}
+  \item Guardar todos los cambios en el repositorio. \textbf{git commit -m ``Mensaje''}
+  \item Subir los cambios al servidor remoto. \textbf{git push origin RAMA}
+\end{itemize}
+
+
+
+\newpage
+
+\section{\textbf{Manual de Referencia}}
+
+\subsection{Inicializar un repositorio}
+
+\bc \textbf{git init} \ec
+
+
+\subsection{Enlazar con un repositorio remoto}
+
+\bc \textbf{git remote add origin URL} \ec
+
+
+\subsection{Obtener el repositorio remoto}
+
+\bc \textbf{git pull origin} \ec
+
+
+\subsection{Crear una nueva rama}
+
+\bc \textbf{git branch NOMBRE\_RAMA} \ec
+
+
+\subsection{Mostrar las ramas}
+
+\bc \textbf{git branch} \ec
+
+\subsection{Mostrar ramas remotas}
+
+\bc \textbf{git branch -r} \ec
+
+
+\subsection{Moverse a una rama}
+
+\bc \textbf{git checkout RAMA} \ec
+
+
+\subsection{Crear una rama y moverse a ella directamente}
+
+\bc \textbf{git checkout -b NOMBRE\_RAMA} \ec
+
+\subsection{Crear rama y asignarla a una del repositorio remoto}
+
+\bc \textbf{git branch -t NOMBRE\_RAMA REPOSITORIO/NOMBRE\_RAMA},\\Ejemplo: \textit{git branch -t RAAndroid origin/RAAndroid} \ec
+
+
+\subsection{Obtener contenido rama remota}
+
+\bc \textbf{git pull origin NOMBRE\_RAMA} \ec
+
+
+\subsection{Añadir los cambios al ``stage''}
+
+\bc \textbf{git add ARCHIVOS},\\ Ejemplo comun: \textit{git add .} para añadirlos todos \ec
+
+
+\subsection{Añadir cambios al repositorio}
+
+\bc \textbf{git commit -m "MENSAJE DESCRIPTIVO"} \ec
+
+
+\subsection{Añadir cambios al repositorio directamente}
+
+\bc \textbf{git commit \underline{-a} -m "MENSAJE DESCRIPTIVO"} \ec
+
+
+\subsection{Subir los cambios al repositorio remoto}
+
+\bc \textbf{git push origin NOMBRE\_RAMA} \ec
+
+
+\subsection{Unir ramas}
+
+\bc \textbf{git merge NOMBRE\_RAMA},\\ desde la rama sobre la que se unirá.\\Ejemplo: \textit{git merge JJAndroid}, estando en la rama \textit{Android}  \ec
+
+
+\subsection{Borrar ramas}
+
+
+\bc \textbf{git branch -d NOMBRE\_RAMA},\\ si ya la hemos unido y no va a ser usada. \ec
+
+
+\subsection{Borrar ramas (2)}
+
+
+\bc \textbf{git branch \underline{-D} NOMBRE\_RAMA},\\ si queremos borrarla del todo. \ec
+
+
+\subsection{Borrar ramas remotas}
+
+\bc \textbf{git push origin :NOMBRE\_RAMA} \\o\\ \textbf{git push origin --delete bugfixes} \ec
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\section{\textbf{Enlaces de interés}}
+
+\begin{itemize}
+  \item \url{http://git-scm.com/}
+  \item \url{http://gitref.org/}
+  
+  \item \url{ http://www.genbetadev.com/herramientas/manejo-de-ramas-de-desarrollo-con-git}
+   \item \url{  http://geeksstory.wordpress.com/2012/01/25/tip-como-eliminar-una-rama-remota-con-git/}
+   
+    \item \url{  http://www.adictosaltrabajo.com/tutoriales/tutoriales.php?pagina=git}
+  
+
+ 
+
+\end{itemize}
+
+
+
+
+
+\newpage 
+\thispagestyle{empty}
+
+%\backmatter
+
+\end{document}
